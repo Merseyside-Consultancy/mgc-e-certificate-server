@@ -97,7 +97,7 @@ async function run() {
 
       app.get('/singleCertificate/:nameText', async (req, res) => {
         const nameText = req.params.nameText;
-        const query = { nameText: nameText }; // Assuming 'nameText' is the correct field
+        const query = { nameText: new RegExp(`^${nameText}$`, 'i') };
         const result = await certificateCollection.findOne(query);
         res.send(result);
       });
